@@ -53,3 +53,6 @@ Où `model` est une fonction théorique qui permet de calculer les `Y` en foncti
 On a modelisé l'erreur de mesure à l'aide d'une distribution normale de variance `sigma^2`
 
 TODO : écrire la suite
+
+
+Référence : Le raisonnement bayésien: Modélisation et inférence
