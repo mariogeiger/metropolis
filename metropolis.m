@@ -1,8 +1,8 @@
 % hypothèse
-%  y = model(P, x) + sigma * randn()
+%  y = model(T, x) + sigma * randn()
 %
 % étant donnés un modèle et un ensemble de mesures (X et Y)
-% cherche P et sigma
+% cherche T et sigma
 % 
 function [p,sig,x2,y2] = metropolis(model, X, Y, p_init, p_var, iter)
 
@@ -33,8 +33,7 @@ for i = 2:iter
 	r = 2 * rand(size(p_var)) - 1;
 	r = r .^ 3;
 	p_new = p(i-1,:) + p_var .* r;
-	%sig_new = abs(sig(i-1) + sig(1) * (rand() - 0.5)^3);
-	sig_new = sig(i-1) * (1/1.1 + rand() * (1.1 - 1/1.1)); % TODO check math if this is allowed step
+	sig_new = sig(i-1) * (1/1.1 + rand() * (1.1 - 1/1.1));
 
 	res_new = sum((Y - model(p_new, X)).^2) / (2 * sig_new^2);
 	
@@ -74,20 +73,3 @@ plot(X,Y, 'o', x2,y2, '-');
 legend('data', 'fit');
 
 end
-
-% % fit avec gausienne :
-% model = @(P,X) P(1)*normpdf(X,P(2),P(3));
-%
-% % fit avec polynome :
-% model = @(P,X) polyval(P, X);
-% 
-% % fit avec fonction quelconque
-% model = @(P,X) P(1) * X.^2 + sin(P(2) * X) / P(3)
-%
-% % génére les donéée aléatoirement
-% x = linspace(-1, 1, 300);
-% y = model([10,0,0.1],x) + 2 * randn(size(x));
-%
-% plot(x,y)
-% [p,sig] = metropolis(model, x, y, [5, 1, 1]);
-
