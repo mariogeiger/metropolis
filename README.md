@@ -1,5 +1,17 @@
 # metropolis
 
+## Example
+
+```
+p = metropolis(@(param, x) param(1)+param(2)*x, (1:100), rand(1,100), [0,0], [1,1], 20000);
+figure
+plot(p(:,1), p(:,2), 'x')
+```
+
+Le code précédent cherche la meilleure droite qui approxime des nombre générés aléatoirement.
+Le plot montre le parcours empunté par l'algorithme de metropolis dans l'espace des paramètres.
+Grace aux propriétés de l'algorithme de metropolis, le plot montre le corélation entre les deux paramètres.
+
 ## Algorithme de Metropolis
 
 Il permet de distribuer une chaine de nombre aléatoire `x_i` selon une loi de probabilité `P(x)` a condition de lui donner le ratio `P(x_i) / P(x_j)`.
@@ -52,7 +64,26 @@ Y = model(X, T) + sigma randn
 Où `model` est une fonction théorique qui permet de calculer les `Y` en fonction des `X` est des paramètres `T`.
 On a modelisé l'erreur de mesure à l'aide d'une distribution normale de variance `sigma^2`
 
-TODO : écrire la suite
+On peut alors calculer `P(D | T)`
 
+```
+              n                                                  n           1               1   Y_i - model(X_i, T)
+P(D | T) = produit P(Y_i = model(X_i, T) + sigma randn | T) = produit --------------- exp(- --- (-------------------)^2)
+            i = 1                                              i = 1  sigma sqrt(2pi)        2         sigma
+            
+           1                    1        n                                        1                   R
+= ------------------- exp(- --------   somme (Y_i - model(X_i, T))^2) == ------------------- exp(- --------)
+  sigma^N sqrt(2pi)^N       2sigma^2   i = 1                             sigma^N sqrt(2pi)^N       2sigma^2
+```
+
+En en déduit le ratio :
+
+```
+         P(D | T')    sigma_i           R_i           R'
+ratio = ---------- = (-------)^N exp(---------- - ---------)
+        P(D | T_i)    sigma'         2sigma_i^2   2sigma'^2
+```
+
+(Ce résultat est utilisé à la ligne 41 du script)
 
 Référence : Le raisonnement bayésien: Modélisation et inférence
