@@ -10,7 +10,7 @@ plot(p(:,1), p(:,2), 'x')
 
 Le code précédent cherche la meilleure droite qui approxime des nombre générés aléatoirement.
 Le plot montre le parcours empunté par l'algorithme de metropolis dans l'espace des paramètres.
-Grace aux propriétés de l'algorithme de metropolis, le plot montre le corélation entre les deux paramètres.
+Grace aux propriétés de l'algorithme de metropolis, le plot montre la corélation entre les deux paramètres.
 
 ## Algorithme de Metropolis
 
@@ -71,17 +71,24 @@ On peut alors calculer `P(D | T)`
 P(D | T) = produit P(Y_i = model(X_i, T) + sigma randn | T) = produit --------------- exp(- --- (-------------------)^2)
             i = 1                                              i = 1  sigma sqrt(2pi)        2         sigma
             
-           1                    1        n                                        1                   R
-= ------------------- exp(- --------   somme (Y_i - model(X_i, T))^2) == ------------------- exp(- --------)
-  sigma^N sqrt(2pi)^N       2sigma^2   i = 1                             sigma^N sqrt(2pi)^N       2sigma^2
+           1                  n   (Y_i - model(X_i, T))^2
+= ------------------- exp(- somme -----------------------)
+  sigma^n sqrt(2pi)^n       i = 1       2 sigma^2
+```
+
+Si on définit 
+```
+      n   (Y_i - model(X_i, T))^2
+R = somme -----------------------
+    i = 1       2 sigma^2
 ```
 
 En en déduit le ratio :
 
 ```
-         P(D | T')    sigma_i           R_i           R'
-ratio = ---------- = (-------)^N exp(---------- - ---------)
-        P(D | T_i)    sigma'         2sigma_i^2   2sigma'^2
+         P(D | T')    sigma_i
+ratio = ---------- = (-------)^n exp(R_i - R')
+        P(D | T_i)    sigma'
 ```
 
 (Ce résultat est utilisé à la ligne 41 du script)
