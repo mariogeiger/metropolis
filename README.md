@@ -2,7 +2,7 @@
 
 ## Example
 
-```
+```matlab
 p = metropolis(@(param, x) param(1)+param(2)*x, (1:100), rand(1,100), [0,0], [1,1], 20000);
 figure
 plot(p(:,1), p(:,2), 'x')
