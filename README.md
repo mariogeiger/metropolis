@@ -50,7 +50,9 @@ P(T | D) = --------------
 
 ## Algorithme de fit
 
-On combine les deux idées et on obtient comme `ratio` (`g` symmetrique) :
+On combine les deux idées : l'objectif est de distribuer une suite `T_i` selon la probabilité `P(T | D)`.
+
+En prenant une fonction `g` symétrique, on obtient comme ratio :
 
 ```
          P(D | T')  P(T')
