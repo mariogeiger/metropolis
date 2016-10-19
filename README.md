@@ -12,6 +12,11 @@ Le code précédent cherche la meilleure droite qui approxime des nombre génér
 Le plot montre le parcours empunté par l'algorithme de metropolis dans l'espace des paramètres.
 Grace aux propriétés de l'algorithme de metropolis, le plot montre la corélation entre les deux paramètres.
 
+Voir aussi les fichier d'examples :
+- `example1.m` : Fit des données générées aléatoirement à l'aide d'une fonction affine puis calcule la moyenne et l'écart type des paramètres du fit.
+- `example2.m` : Fit des données mesurées (fichier `data`) à l'aide de la bonne fonction théorique pour en déduire la valeur de la fréquence propre avec une insertitude.
+- `example3.m` : Montre le chemin emprunté par les itérations de l'algorithme, les première itérations sont transitoire puis le système se stabilise ce qui permet de déduire les distribution des paramètres (variance, covariances, ...)
+
 ## Algorithme de Metropolis
 
 Il permet de distribuer une chaine de nombre aléatoire `x_i` selon une loi de probabilité `P(x)` a condition de lui donner le ratio `P(x_i) / P(x_j)`.
