@@ -64,29 +64,33 @@ La probabilité `P(T)` a une drôle d'interpretation, c'est la probabilité d'ob
 
 ## Calcul du ratio
 
-Pour calculer `P(D | T') / P(D | T_i)` dans le cas d'un fit avec comme mesures `(X,Y)` on peut prendre comme hypothèse que 
+Pour calculer `P(D | T') / P(D | T_i)` dans le cas d'un fit avec comme mesures `(X,Y)` on prend comme hypothèse que les mesure suivent la loi suivante :
 ```
-Y = model(X, T) + sigma randn
+Y = model(X, T) + sigma N
 ```
-Où `model` est une fonction théorique qui permet de calculer les `Y` en fonction des `X` est des paramètres `T`.
-On a modelisé l'erreur de mesure à l'aide d'une distribution normale de variance `sigma^2`
+Où `model` est une fonction déterministe (propre au problème étudié) qui permet de calculer les `Y` en fonction des `X` est des paramètres `T`.
+`N` est une variable aléatoire distribuée selon la loi normale.
 
 On peut alors calculer `P(D | T)`
 
 ```
-              n                                                  n           1               1   Y_i - model(X_i, T)
-P(D | T) = produit P(Y_i = model(X_i, T) + sigma randn | T) = produit --------------- exp(- --- (-------------------)^2)
-            i = 1                                              i = 1  sigma sqrt(2pi)        2         sigma
+              n
+P(D | T) = Produit P(Y_i = model(X_i, T) + sigma randn | T)
+            i = 1
+            
+     n           1               1   Y_i - model(X_i, T)
+= Produit --------------- exp(- --- (-------------------)^2)
+   i = 1  sigma sqrt(2pi)        2         sigma
             
            1                  n   (Y_i - model(X_i, T))^2
-= ------------------- exp(- somme -----------------------)
+= ------------------- exp(- Somme -----------------------)
   sigma^n sqrt(2pi)^n       i = 1       2 sigma^2
 ```
 
-Si on définit 
+Si on définit les résidus `R` comme
 ```
       n   (Y_i - model(X_i, T))^2
-R = somme -----------------------
+R = Somme -----------------------
     i = 1       2 sigma^2
 ```
 
