@@ -9,8 +9,11 @@ plot(p(:,1), p(:,2), 'x')
 ```
 
 Le code précédent cherche la meilleure droite qui approxime des nombre générés aléatoirement.
+`p` contient une marche aléatoire des différents paramètres.
 Le plot montre le parcours empunté par l'algorithme de metropolis dans l'espace des paramètres.
 Grace aux propriétés de l'algorithme de metropolis, le plot montre la corélation entre les deux paramètres.
+
+Pour donner une valeur et une insertitude aux paramètres il suffit de calculer la moyenne (`mean(p(500:end,:))`) et l'écart type (`std(p(500:end,:))`) de la queue de la marche aléatoire (`p`).
 
 Voir aussi les fichier d'examples :
 - `example1.m` : Fit des données générées aléatoirement à l'aide d'une fonction affine puis calcule la moyenne et l'écart type des paramètres du fit.
