@@ -20,6 +20,19 @@ Voir aussi les fichier d'examples :
 - `example2.m` : Fit des données mesurées (fichier `data`) à l'aide de la bonne fonction théorique pour en déduire la valeur de la fréquence propre avec une insertitude.
 - `example3.m` : Montre le chemin emprunté par les itérations de l'algorithme, les première itérations sont transitoire puis le système se stabilise ce qui permet de déduire les distribution des paramètres (variance, covariances, ...)
 
+## Paramètres et retour de la fonction
+
+1. Le modèle qui lie x à y en fonction des paramètres : une fonction qui prend en arguments un vecteur représentant les paramètres et un vecteur représentant les valeurs x
+2. Les données mesurées en x
+3. Les données mesurées en y
+4. Les paramètres initiaux (c'est via ce paramètre que l'algorithme sait combien il y a de paramètres)
+5. La taille maximale des pas de la marche aléatoire selon chaque paramètres
+5. Le nombre d'itérations
+
+Retourne une matrice de taille (nombre d'iteration) x (nombre de paramètres).
+Chaque ligne correspond à un pas de la marche aléatoire.
+Si l'on retire la période transitoire, chaque ligne est distribuée aléatoirement selon "la bonne distribution".
+
 ## Algorithme de Metropolis
 
 Il permet de distribuer une chaine de nombre aléatoire `x_i` selon une loi de probabilité `P(x)` a condition de lui donner le ratio `P(x_i) / P(x_j)`.
