@@ -1,5 +1,8 @@
 # metropolis
 
+The python version has been added afterward.
+The readme talk about the octave version but the python version do almost the same except that it rely on the library [emcee](http://dan.iel.fm/emcee/).
+
 ## Example
 
 ```matlab
