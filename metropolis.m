@@ -51,7 +51,7 @@ end
 % terminé : on fait des plots
 q = floor(0.3*iter);
 
-x2 = linspace(X(1), X(end), max(1000, N));
+x2 = linspace(min(X), max(X), max(1000, N));
 y2 = model(mean(p(q:end,:)), x2);
 
 nplot = numel(p_init) + 2;

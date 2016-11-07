@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # régression linéaire
-import metropolis
+from metropolis import metropolis
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -13,7 +13,7 @@ x = np.linspace(-5, 15, 30)
 y = 4.5 * x + 12 + 2 * np.random.randn(len(x))
 
 # fit :
-p = metropolis.metropolis(model, x, y, [5, 10], [0.5, 1])
+p = metropolis(model, x, y, [5, 10], [0.5, 1])
 
 # moyennes et écarts types :
 a  = np.mean(p[:,0], axis=0)

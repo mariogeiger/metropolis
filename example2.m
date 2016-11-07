@@ -4,7 +4,7 @@
 model = @(p, x) p(1) * x ./ sqrt((p(2)^2 - x.^2).^2 + 4*p(3)^2 * x.^2);
 
 
-% changement des données :
+% chargement des données :
 data = load("data");
 
 
