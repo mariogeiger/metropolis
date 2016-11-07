@@ -5,12 +5,12 @@ from math import log
 def metropolis(model, x, y, p_init, p_var, Niter=1000, Ninit=300, Nwalkers=10):
 	
 	def lnprob(p, x, y, model):
-		# prior (sigma is nonnegative)
-		if p[0] < 0:
+		# prior : sigma is positive
+		if p[0] <= 0:
 			return -np.inf
 		# log of likelihood
-		return - 0.5 * x.shape[0] * log(abs(p[0])) \
-		       - np.sum(np.power(y - model(p[1:], x), 2)) / (2 * p[0] ** 2)
+		return - x.shape[0] * log(p[0]) \
+		       - np.sum((y - model(p[1:], x))**2) / (2. * p[0] ** 2)
 	
 	# choose initial parameters for each walker
 	p0 = [np.append(np.random.rand(1) * np.std(y), p_init + np.random.randn(len(p_var)) * p_var) for i in range(Nwalkers)]
