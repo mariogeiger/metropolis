@@ -2,7 +2,9 @@ import numpy as np
 import emcee
 from math import log
 
-def metropolis(model, x, y, p_init, p_var, Niter=1000, Ninit=300, Nwalkers=10):
+def metropolis(model, x, y, p_init, p_var, Niter=1000, Ninit=None, Nwalkers=10):
+	if Ninit is None:
+		Ninit = Niter / 2
 	
 	def lnprob(p, x, y, model):
 		# prior : sigma is positive
