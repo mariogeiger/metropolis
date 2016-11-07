@@ -4,7 +4,7 @@
 model = @(param, x) param(1) * x + param(2);
 
 
-% génération des données :
+% génération aléatoire des données :
 x = linspace(-5, 15, 120);
 y = 4.5 * x + 12 + randn(size(x));
 
