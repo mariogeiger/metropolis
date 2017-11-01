@@ -53,3 +53,4 @@ plt.xlabel("lambda [1/s]")
 
 plt.show()
 
+plt.savefig('resonancy.pgf') # export the plot into latex 
